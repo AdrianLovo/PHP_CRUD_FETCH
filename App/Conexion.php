@@ -4,8 +4,7 @@
 
         public function conectar(){
             try{
-                //Agregar credenciales BD
-                $pdo = new PDO("mysql:host=127.0.0.1;bdname=bdfetch","user","password");
+                $pdo = new PDO("mysql:host=localhost;bdname=bdfetch","prueba","M3gaman121212");
                 return $pdo;
             }catch(PDOException $e){
                 echo($e);
@@ -22,3 +21,5 @@
         }
     
     }
+
+	echo("Hola");

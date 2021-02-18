@@ -1,4 +1,5 @@
 #Script de creacion de Base de Datos y Tabla
+#Modificar archivo App/Controllers/Conexion con las credenciales de usuario y bd
 DROP DATABASE IF EXISTS bdfetch;
 
 CREATE DATABASE bdfetch;
@@ -14,9 +15,3 @@ CREATE TABLE IF NOT EXISTS bdfetch.url(
 );
 
 SELECT * FROM bdfetch.url;
-
-USE mysql;
-
-CREATE USER 'prueba'@'localhost' IDENTIFIED BY 'M3gaman121212$';
-
-GRANT ALL PRIVILEGES ON bdfetch.* TO 'prueba'@'localhost';
