@@ -10,7 +10,7 @@ import {mensaje} from './SweetMessage.js';
     listar();
 })()
 
-
+//Agregar Imagen
 img.addEventListener('change', (e) => {
     vistaPrevia.classList.remove("d-none");
     let name = e.target.files[0];
@@ -18,6 +18,7 @@ img.addEventListener('change', (e) => {
     document.getElementById("imgPrevia").src = img;
 });
 
+//Agregar Publicacion
 publicar.addEventListener("click", async (e) => {
     e.preventDefault();
     let frmImg = document.getElementById("frmImg");
@@ -41,6 +42,7 @@ publicar.addEventListener("click", async (e) => {
     }
 });
 
+//Mostrar Publicacion
 async function listar(){
     const data = new FormData();
     data.append('opcion', 'select');
@@ -60,10 +62,36 @@ async function listar(){
     }
 }
 
+//Eliminar Publicacion
+async function eliminar(e){
+    let IdURL = e.target.id;
+    let nodo = e.target.parentNode;
+    
+    const data = new FormData();
+    data.append('opcion', 'delete');
+    data.append('IdURL', IdURL);
+    try{
+        let response = await fetch('/App/Controllers/ControllerPublicacion.php', {
+            method: 'POST',
+            body: data
+        });
+        let dataRes = await response.text();                
+        if(dataRes == "ok"){
+            mensaje('Publicacion Eliminada', 'success');
+            nodo.remove();
+        }else{
+            mensaje('Error Listando Publicaciones', 'error');    
+        }
+    }catch(error){
+        mensaje('Error Listando Publicaciones', 'error');
+    }
+}
+
+//Crear Card
 function crearCard(element){
     //Container
     let container = document.createElement("div");    
-    container.className ="col-lg-3 col-md-3 col-sm-4 col-xs-12 mt-2";
+    container.className ="col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-2";
     
     //Card
     let card = document.createElement("div");    
@@ -79,7 +107,7 @@ function crearCard(element){
     
     //Body
     let card_body = document.createElement("div");    
-    card_body.className ="card-body";
+    card_body.className ="card-body text-center";
     let card_body_comentario = document.createElement("p");
     card_body_comentario.innerHTML = element.Comentario;
     card_body.appendChild(card_body_comentario);
@@ -87,18 +115,18 @@ function crearCard(element){
     let card_img = document.createElement("img");
     card_img.className ="img-thumbnail card_img";
     card_img.src = element.URL;
+    card_body.appendChild(card_img);
 
     let card_delete = document.createElement("button");
     card_delete.className ="btn btn-sm btn-danger";
     card_delete.innerText = "Eliminar";
-    card_delete.id = element.IdURL;   
+    card_delete.id = element.IdURL;
+    card_delete.addEventListener('click', eliminar);
 
     //Agregando todo al Container Princiapl
     card.appendChild(card_header);
     card.appendChild(card_body);
-    card.appendChild(card_img);
     card.appendChild(card_delete);
     container.appendChild(card);
     return container;
 }
-

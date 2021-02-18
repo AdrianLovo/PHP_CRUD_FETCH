@@ -34,5 +34,17 @@
 			return $arrayDeObjetos;
 		}
 
+
+		public function queryEliminar(){
+			$query = "DELETE FROM bdfetch.url WHERE IdURL = ?";
+			return $query;
+		}
+
+		public function metodoEliminar($statement, $parametro){
+			$statement->execute([$parametro]);
+			$filasAfectadas = $statement->rowCount();
+			return $filasAfectadas;
+		}
+
     }
 

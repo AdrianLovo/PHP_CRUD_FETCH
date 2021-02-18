@@ -4,11 +4,15 @@
 
     abstract class DAO extends Conexion{
 
-        abstract function queryAgregar();		
-        abstract function metodoAgregar($statement, $parametro);
-
 		abstract function queryListar();		
+        abstract function queryAgregar();		
+		abstract function queryEliminar();		
+
         abstract function metodoListar($statement);
+        abstract function metodoAgregar($statement, $parametro);
+		abstract function metodoEliminar($statement, $parametro);				
+
+
 
        /*
         * Metodo para agregar elemento 
@@ -49,5 +53,25 @@
 				$pdo = null;
 			}
 		}		
+
+		/*
+		* Metodo para eliminar registrosa de la tabla "persona" segun "id"
+		* @access: public
+		* @param:  $parametro (int indicando identificado)		
+ 		* @return: $filasAfectadas (int de registros eliminados)
+ 		*/
+		 public function eliminar($parametro) {
+			$pdo = $this->conectar();
+			try{
+				$statement = $pdo->prepare($this->queryEliminar());
+				$filasAfectadas = $this->metodoEliminar($statement, $parametro);
+				$pdo = null;
+				return $filasAfectadas;
+			}catch(Exception $e){
+				LogError::guardarLog("Sql.log", $e->getMessage(), $e->getCode(), $e->getFile(), $e->getLine());
+			}finally{
+				$pdo = null;
+			}
+		}
 
     }

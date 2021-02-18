@@ -42,10 +42,11 @@ body{
     height: 5px;
     background: #fff;
 }
+
 .card_img{
     border-radius: 2px; 
     margin-bottom: 5px; 
-    width: 95%; 
+    width: 100%; 
     height: 180px; 
     object-fit: scale-down; 
     max-width: 300px;
@@ -53,4 +54,7 @@ body{
 .card_fecha{
     margin: auto;
     text-align: center;
+}
+.centrado{
+    color: red !important;    
 }

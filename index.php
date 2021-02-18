@@ -38,7 +38,7 @@
                                 <label for="comentario">Comentario</label>
                                 <textarea id="comentario" name="comentario" class="form-control" rows="3"></textarea>
                             </div> 
-                            <button class="btn btn-primary" id="publicar">Publicar</button>
+                            <button class="btn btn-primary mt-1" id="publicar">Publicar</button>
                         </form>
                     </div>
                 </div>

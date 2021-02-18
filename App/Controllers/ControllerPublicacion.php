@@ -13,8 +13,10 @@
             case "select":
                 listar();
 			break;	
+            case "delete":
+                eliminar();
+			break;	
         }   
-
     }
     
     function agregar(){
@@ -47,4 +49,17 @@
 			$datosTodos[] = $datos;	
 		}
 		echo json_encode($datosTodos);	
+	}
+
+    function eliminar(){
+        $parametro = $_POST['IdURL'];    
+		$daoPublicacion = new DaoPublicacion();
+
+        $filas = $daoPublicacion->eliminar($parametro);
+		if($filas > 0){
+            echo("ok");
+        }else{
+            echo("error");
+        }
+		
 	}
