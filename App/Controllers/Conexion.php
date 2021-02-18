@@ -4,7 +4,7 @@
 
         public function conectar(){
             try{
-                $pdo = new PDO("mysql:host=localhost;bdname=bdfetch","prueba","password");
+                $pdo = new PDO("mysql:host=localhost;bdname=bdfetch","prueba","M3gaman121212");
                 return $pdo;
             }catch(PDOException $e){
                 echo($e);

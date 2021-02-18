@@ -17,6 +17,6 @@ SELECT * FROM bdfetch.url;
 
 USE mysql;
 
-CREATE USER 'prueba'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'prueba'@'localhost' IDENTIFIED BY 'M3gaman121212$';
 
 GRANT ALL PRIVILEGES ON bdfetch.* TO 'prueba'@'localhost';
