@@ -14,12 +14,9 @@ import {mensaje} from './SweetMessage.js';
 img.addEventListener('change', (e) => {
     let file = e.target.files[0];
     let img = URL.createObjectURL(file);
-
     let sizeByte = file.size;
     let siezekiloByte = parseInt(sizeByte / 1024);
     
-
-
     if (!(/\.(jpg|png|gif)$/i).test(file.name)) {
         mensaje('Tipo de archivo NO Admitido', 'error');        
     }else{
@@ -80,6 +77,7 @@ async function listar(){
 async function eliminar(e){
     let IdURL = e.target.id;
     let nodo = e.target.parentNode;
+    let nodoSup = nodo.parentNode;
     
     const data = new FormData();
     data.append('opcion', 'delete');
@@ -92,7 +90,8 @@ async function eliminar(e){
         let dataRes = await response.text();                
         if(dataRes == "ok"){
             mensaje('Publicacion Eliminada', 'success');
-            nodo.remove();
+            //nodo.remove();
+            nodoSup.remove();
         }else{
             mensaje('Error Listando Publicaciones', 'error');    
         }

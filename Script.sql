@@ -1,5 +1,6 @@
 #Script de creacion de Base de Datos y Tabla
 #Modificar archivo App/Controllers/Conexion con las credenciales de usuario y bd
+
 DROP DATABASE IF EXISTS bdfetch;
 
 CREATE DATABASE bdfetch;
